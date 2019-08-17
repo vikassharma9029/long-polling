@@ -1,7 +1,7 @@
 # long-polling
 A very simple demonstration of long-polling with AJAX (jQuery) and PHP. Long-polling makes near "real-time" applications possible. in other words it will sends a request to the server, keep the connection open, get an answer when there's "data" for you. This will cost you only one request (per user), but the request keeps a permanent connection between client and server up.
 
-# Perpous 
+# Purpose 
 I wanted to develop notification panel which is automatic refresh without page refresh.
 
 # How to use
