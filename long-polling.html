@@ -1,0 +1,50 @@
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+</head>
+<body>
+<div id="response_arr"></div>
+<div id="total_count"></div>
+</body>
+
+
+
+<script>
+function fetchNotificationCount(timestamp)
+{
+    var queryString = {'timestamp' : timestamp};
+
+    $.ajax(
+        {
+            type: 'POST',
+            //url: '<?php echo $this->basePath(); ?>' + "/long-polling/server.php",
+            url: 'http://10.1.17.112/long-polling/server/server.php',
+            data: queryString,
+            success: function(data){ 
+                var obj = jQuery.parseJSON(data);
+                
+	    // if u need to perform any action on success then call ajax otherwise comment this ajax request
+            // second ajax call | call ajax to fetch the count of notification.. 
+            $.ajax({
+                   type : 'POST',
+                   url : URL,
+                   success: function(response){
+                       if(response != ''){
+                           $('#total_count').html(response.val_count);
+                       }
+                   }
+               });
+                
+               $('#response_arr').html(data.data_from_file);
+               // second ajax call Ends
+ 
+                // call the function again, this time with the timestamp we just got from server.php
+                fetchNotificationCount(obj.timestamp);
+                
+            }
+        }
+    );
+}
+
+fetchNotificationCount();
+</script>
