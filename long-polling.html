@@ -18,7 +18,7 @@ function fetchNotificationCount(timestamp)
         {
             type: 'POST',
             //url: '<?php echo $this->basePath(); ?>' + "/long-polling/server.php",
-            url: 'http://10.1.17.112/long-polling/server/server.php',
+            url: 'http://localhost/long-polling/server/server.php',
             data: queryString,
             success: function(data){ 
                 var obj = jQuery.parseJSON(data);
